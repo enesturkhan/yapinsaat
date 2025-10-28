@@ -233,7 +233,6 @@ export default function ProjectsPage() {
                     <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
                         <div className="flex flex-wrap items-center gap-4">
                             <Filter className="text-slate-600" size={20} />
-                            <span className="text-slate-700 font-medium">Filtrele:</span>
                             {["Tümü", "Tamamlandı", "Devam Ediyor"].map((status) => (
                                 <button
                                     key={status}
