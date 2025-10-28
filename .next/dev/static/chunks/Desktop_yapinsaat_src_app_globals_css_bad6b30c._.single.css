@@ -1439,6 +1439,10 @@
     color: var(--slate-800) !important;
   }
 
+  .\!text-white {
+    color: var(--color-white) !important;
+  }
+
   .text-black {
     color: var(--color-black);
   }
@@ -1937,8 +1941,26 @@
   }
 
   @media (min-width: 48rem) {
+    .md\:\!text-inherit {
+      color: inherit !important;
+    }
+  }
+
+  @media (min-width: 48rem) {
     .md\:text-black {
       color: var(--color-black);
+    }
+  }
+
+  @media (min-width: 48rem) {
+    .md\:text-slate-800 {
+      color: var(--slate-800);
+    }
+  }
+
+  @media (min-width: 48rem) {
+    .md\:text-white {
+      color: var(--color-white);
     }
   }
 

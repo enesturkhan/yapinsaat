@@ -86,7 +86,7 @@ export default function Navbar() {
                         <Link href="/" className="flex items-center">
                             <span className="text-2xl font-bold">
                                 <span className="text-yellow-400">Han</span>
-                                <span className="!text-slate-800" style={{ color: '#1e293b' }}>
+                                <span className={`transition-colors text-slate-800 md:${scrolled ? "text-slate-800" : "text-white"}`}>
                                     yapı
                                 </span>
                             </span>
