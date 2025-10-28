@@ -262,18 +262,18 @@ function Navbar() {
                                 }, this),
                                 /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$Desktop$2f$yapinsaat$2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("button", {
                                     onClick: ()=>setIsOpen(!isOpen),
-                                    className: `md:hidden p-2 rounded-md transition-colors cursor-pointer ${scrolled ? "text-slate-600 hover:text-yellow-400 hover:bg-slate-50" : "text-white hover:text-yellow-400 hover:bg-white/10"}`,
+                                    className: "md:hidden p-2 rounded-md transition-colors cursor-pointer text-black hover:text-yellow-400 hover:bg-slate-50",
                                     children: isOpen ? /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$Desktop$2f$yapinsaat$2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$Desktop$2f$yapinsaat$2f$node_modules$2f$lucide$2d$react$2f$dist$2f$esm$2f$icons$2f$x$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__$3c$export__default__as__X$3e$__["X"], {
                                         size: 24
                                     }, void 0, false, {
                                         fileName: "[project]/Desktop/yapinsaat/src/components/Navbar.tsx",
-                                        lineNumber: 119,
+                                        lineNumber: 116,
                                         columnNumber: 39
                                     }, this) : /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$Desktop$2f$yapinsaat$2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$Desktop$2f$yapinsaat$2f$node_modules$2f$lucide$2d$react$2f$dist$2f$esm$2f$icons$2f$menu$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__$3c$export__default__as__Menu$3e$__["Menu"], {
                                         size: 24
                                     }, void 0, false, {
                                         fileName: "[project]/Desktop/yapinsaat/src/components/Navbar.tsx",
-                                        lineNumber: 119,
+                                        lineNumber: 116,
                                         columnNumber: 57
                                     }, this)
                                 }, void 0, false, {
@@ -303,17 +303,17 @@ function Navbar() {
                                     children: item.name
                                 }, item.name, false, {
                                     fileName: "[project]/Desktop/yapinsaat/src/components/Navbar.tsx",
-                                    lineNumber: 129,
+                                    lineNumber: 126,
                                     columnNumber: 33
                                 }, this))
                         }, void 0, false, {
                             fileName: "[project]/Desktop/yapinsaat/src/components/Navbar.tsx",
-                            lineNumber: 127,
+                            lineNumber: 124,
                             columnNumber: 25
                         }, this)
                     }, void 0, false, {
                         fileName: "[project]/Desktop/yapinsaat/src/components/Navbar.tsx",
-                        lineNumber: 126,
+                        lineNumber: 123,
                         columnNumber: 21
                     }, this)
                 ]
