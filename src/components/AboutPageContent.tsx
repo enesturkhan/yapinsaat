@@ -137,6 +137,40 @@ export default function AboutPageContent() {
     const { ref: valuesRef, animationClass: valuesAnimation } = useScrollAnimation("left");
     const { ref: teamRef, animationClass: teamAnimation } = useScrollAnimation("right");
 
+    // Touch handlers for mobile swipe
+    const [touchStart, setTouchStart] = useState<number | null>(null);
+    const [touchEnd, setTouchEnd] = useState<number | null>(null);
+    const [isPaused, setIsPaused] = useState(false);
+
+    const minSwipeDistance = 50;
+
+    const onTouchStart = (e: React.TouchEvent) => {
+        setTouchEnd(null);
+        setTouchStart(e.targetTouches[0].clientX);
+        setIsPaused(true);
+    };
+
+    const onTouchMove = (e: React.TouchEvent) => {
+        setTouchEnd(e.targetTouches[0].clientX);
+    };
+
+    const onTouchEnd = () => {
+        if (!touchStart || !touchEnd) {
+            setIsPaused(false);
+            return;
+        }
+        const distance = touchStart - touchEnd;
+        const isLeftSwipe = distance > minSwipeDistance;
+        const isRightSwipe = distance < -minSwipeDistance;
+
+        if (isLeftSwipe || isRightSwipe) {
+            // Pause animation briefly
+            setTimeout(() => setIsPaused(false), 1000);
+        } else {
+            setIsPaused(false);
+        }
+    };
+
     return (
         <>
             {/* Hero Section */}
@@ -312,28 +346,21 @@ export default function AboutPageContent() {
                 </div>
 
                 {/* Client Logos Slider - Full Width */}
-                <div className="relative overflow-hidden w-full">
-                    <div className="flex gap-8 animate-slide-infinite">
-                        {/* First Set */}
-                        <div className="flex gap-8 shrink-0">
-                            {[1, 2, 3, 4, 5, 6, 7, 8].map((num) => (
-                                <div key={num} className="bg-white p-8 rounded-xl shadow-md hover:shadow-xl transition-shadow flex items-center justify-center h-32 w-64 shrink-0">
-                                    <div className="w-full h-12 bg-slate-200 rounded-lg flex items-center justify-center">
-                                        <span className="text-slate-500 font-semibold">Logo {num}</span>
-                                    </div>
+                <div
+                    className="relative overflow-hidden w-full"
+                    onTouchStart={onTouchStart}
+                    onTouchMove={onTouchMove}
+                    onTouchEnd={onTouchEnd}
+                >
+                    <div className={`m-4 flex gap-8 ${isPaused ? 'animate-none' : 'animate-slide-infinite'}`}>
+                        {/* Infinite Loop Set */}
+                        {[1, 2, 3, 4, 5, 6, 7, 8, 1, 2, 3, 4, 5, 6, 7, 8].map((num, index) => (
+                            <div key={index} className="bg-white p-12 rounded-xl shadow-md hover:shadow-xl transition-shadow flex items-center justify-center h-40 w-64 shrink-0">
+                                <div className="w-full h-16 bg-slate-200 rounded-lg flex items-center justify-center">
+                                    <span className="text-slate-500 font-semibold">Logo {num}</span>
                                 </div>
-                            ))}
-                        </div>
-                        {/* Duplicate Set for Infinite Scroll */}
-                        <div className="flex gap-8 shrink-0">
-                            {[1, 2, 3, 4, 5, 6, 7, 8].map((num) => (
-                                <div key={num + 8} className="bg-white p-8 rounded-xl shadow-md hover:shadow-xl transition-shadow flex items-center justify-center h-32 w-64 shrink-0">
-                                    <div className="w-full h-12 bg-slate-200 rounded-lg flex items-center justify-center">
-                                        <span className="text-slate-500 font-semibold">Logo {num}</span>
-                                    </div>
-                                </div>
-                            ))}
-                        </div>
+                            </div>
+                        ))}
                     </div>
                 </div>
             </section>

@@ -1088,6 +1088,34 @@ function AboutPageContent() {
     const { ref: storyRef, animationClass: storyAnimation } = (0, __TURBOPACK__imported__module__$5b$project$5d2f$Desktop$2f$yapinsaat$2f$src$2f$hooks$2f$useScrollAnimation$2e$ts__$5b$app$2d$client$5d$__$28$ecmascript$29$__["useScrollAnimation"])("right");
     const { ref: valuesRef, animationClass: valuesAnimation } = (0, __TURBOPACK__imported__module__$5b$project$5d2f$Desktop$2f$yapinsaat$2f$src$2f$hooks$2f$useScrollAnimation$2e$ts__$5b$app$2d$client$5d$__$28$ecmascript$29$__["useScrollAnimation"])("left");
     const { ref: teamRef, animationClass: teamAnimation } = (0, __TURBOPACK__imported__module__$5b$project$5d2f$Desktop$2f$yapinsaat$2f$src$2f$hooks$2f$useScrollAnimation$2e$ts__$5b$app$2d$client$5d$__$28$ecmascript$29$__["useScrollAnimation"])("right");
+    // Touch handlers for mobile swipe
+    const [touchStart, setTouchStart] = (0, __TURBOPACK__imported__module__$5b$project$5d2f$Desktop$2f$yapinsaat$2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$index$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["useState"])(null);
+    const [touchEnd, setTouchEnd] = (0, __TURBOPACK__imported__module__$5b$project$5d2f$Desktop$2f$yapinsaat$2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$index$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["useState"])(null);
+    const [isPaused, setIsPaused] = (0, __TURBOPACK__imported__module__$5b$project$5d2f$Desktop$2f$yapinsaat$2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$index$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["useState"])(false);
+    const minSwipeDistance = 50;
+    const onTouchStart = (e)=>{
+        setTouchEnd(null);
+        setTouchStart(e.targetTouches[0].clientX);
+        setIsPaused(true);
+    };
+    const onTouchMove = (e)=>{
+        setTouchEnd(e.targetTouches[0].clientX);
+    };
+    const onTouchEnd = ()=>{
+        if (!touchStart || !touchEnd) {
+            setIsPaused(false);
+            return;
+        }
+        const distance = touchStart - touchEnd;
+        const isLeftSwipe = distance > minSwipeDistance;
+        const isRightSwipe = distance < -minSwipeDistance;
+        if (isLeftSwipe || isRightSwipe) {
+            // Pause animation briefly
+            setTimeout(()=>setIsPaused(false), 1000);
+        } else {
+            setIsPaused(false);
+        }
+    };
     return /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$Desktop$2f$yapinsaat$2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$Desktop$2f$yapinsaat$2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["Fragment"], {
         children: [
             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$Desktop$2f$yapinsaat$2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("section", {
@@ -1101,14 +1129,14 @@ function AboutPageContent() {
                         priority: true
                     }, void 0, false, {
                         fileName: "[project]/Desktop/yapinsaat/src/components/AboutPageContent.tsx",
-                        lineNumber: 144,
+                        lineNumber: 178,
                         columnNumber: 17
                     }, this),
                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$Desktop$2f$yapinsaat$2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
                         className: "absolute inset-0 bg-slate-900/60"
                     }, void 0, false, {
                         fileName: "[project]/Desktop/yapinsaat/src/components/AboutPageContent.tsx",
-                        lineNumber: 151,
+                        lineNumber: 185,
                         columnNumber: 17
                     }, this),
                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$Desktop$2f$yapinsaat$2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -1119,7 +1147,7 @@ function AboutPageContent() {
                                 children: "Hakkımızda"
                             }, void 0, false, {
                                 fileName: "[project]/Desktop/yapinsaat/src/components/AboutPageContent.tsx",
-                                lineNumber: 154,
+                                lineNumber: 188,
                                 columnNumber: 21
                             }, this),
                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$Desktop$2f$yapinsaat$2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("p", {
@@ -1127,19 +1155,19 @@ function AboutPageContent() {
                                 children: "Yılların deneyimi ve uzmanlığıyla inşaat sektörünün öncü firmalarından biri olmaktan gurur duyuyoruz."
                             }, void 0, false, {
                                 fileName: "[project]/Desktop/yapinsaat/src/components/AboutPageContent.tsx",
-                                lineNumber: 157,
+                                lineNumber: 191,
                                 columnNumber: 21
                             }, this)
                         ]
                     }, void 0, true, {
                         fileName: "[project]/Desktop/yapinsaat/src/components/AboutPageContent.tsx",
-                        lineNumber: 153,
+                        lineNumber: 187,
                         columnNumber: 17
                     }, this)
                 ]
             }, void 0, true, {
                 fileName: "[project]/Desktop/yapinsaat/src/components/AboutPageContent.tsx",
-                lineNumber: 143,
+                lineNumber: 177,
                 columnNumber: 13
             }, this),
             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$Desktop$2f$yapinsaat$2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("section", {
@@ -1163,17 +1191,17 @@ function AboutPageContent() {
                                                 size: 32
                                             }, void 0, false, {
                                                 fileName: "[project]/Desktop/yapinsaat/src/components/AboutPageContent.tsx",
-                                                lineNumber: 179,
+                                                lineNumber: 213,
                                                 columnNumber: 45
                                             }, this)
                                         }, void 0, false, {
                                             fileName: "[project]/Desktop/yapinsaat/src/components/AboutPageContent.tsx",
-                                            lineNumber: 178,
+                                            lineNumber: 212,
                                             columnNumber: 41
                                         }, this)
                                     }, void 0, false, {
                                         fileName: "[project]/Desktop/yapinsaat/src/components/AboutPageContent.tsx",
-                                        lineNumber: 177,
+                                        lineNumber: 211,
                                         columnNumber: 37
                                     }, this),
                                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$Desktop$2f$yapinsaat$2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(CounterAnimation, {
@@ -1181,7 +1209,7 @@ function AboutPageContent() {
                                         suffix: stat.suffix
                                     }, void 0, false, {
                                         fileName: "[project]/Desktop/yapinsaat/src/components/AboutPageContent.tsx",
-                                        lineNumber: 182,
+                                        lineNumber: 216,
                                         columnNumber: 37
                                     }, this),
                                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$Desktop$2f$yapinsaat$2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("p", {
@@ -1189,29 +1217,29 @@ function AboutPageContent() {
                                         children: stat.label
                                     }, void 0, false, {
                                         fileName: "[project]/Desktop/yapinsaat/src/components/AboutPageContent.tsx",
-                                        lineNumber: 186,
+                                        lineNumber: 220,
                                         columnNumber: 37
                                     }, this)
                                 ]
                             }, index, true, {
                                 fileName: "[project]/Desktop/yapinsaat/src/components/AboutPageContent.tsx",
-                                lineNumber: 173,
+                                lineNumber: 207,
                                 columnNumber: 33
                             }, this);
                         })
                     }, void 0, false, {
                         fileName: "[project]/Desktop/yapinsaat/src/components/AboutPageContent.tsx",
-                        lineNumber: 169,
+                        lineNumber: 203,
                         columnNumber: 21
                     }, this)
                 }, void 0, false, {
                     fileName: "[project]/Desktop/yapinsaat/src/components/AboutPageContent.tsx",
-                    lineNumber: 165,
+                    lineNumber: 199,
                     columnNumber: 17
                 }, this)
             }, void 0, false, {
                 fileName: "[project]/Desktop/yapinsaat/src/components/AboutPageContent.tsx",
-                lineNumber: 164,
+                lineNumber: 198,
                 columnNumber: 13
             }, this),
             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$Desktop$2f$yapinsaat$2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("section", {
@@ -1229,7 +1257,7 @@ function AboutPageContent() {
                                         children: "Hikayemiz"
                                     }, void 0, false, {
                                         fileName: "[project]/Desktop/yapinsaat/src/components/AboutPageContent.tsx",
-                                        lineNumber: 202,
+                                        lineNumber: 236,
                                         columnNumber: 29
                                     }, this),
                                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$Desktop$2f$yapinsaat$2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("p", {
@@ -1237,7 +1265,7 @@ function AboutPageContent() {
                                         children: "2014 yılında kurulan Hanyapı, modern yapılar inşa etme ve geleceği şekillendirme misyonuyla yola çıktı. Yıllar içinde edindiğimiz deneyim ve müşteri memnuniyeti odaklı yaklaşımımızla sektörde güvenilir bir isim haline geldik."
                                     }, void 0, false, {
                                         fileName: "[project]/Desktop/yapinsaat/src/components/AboutPageContent.tsx",
-                                        lineNumber: 205,
+                                        lineNumber: 239,
                                         columnNumber: 29
                                     }, this),
                                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$Desktop$2f$yapinsaat$2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("p", {
@@ -1245,13 +1273,13 @@ function AboutPageContent() {
                                         children: "Her bir projemizde kaliteyi ön planda tutarak, en son teknolojileri kullanıyor ve çevreye duyarlı, sürdürülebilir çözümler üretiyoruz."
                                     }, void 0, false, {
                                         fileName: "[project]/Desktop/yapinsaat/src/components/AboutPageContent.tsx",
-                                        lineNumber: 210,
+                                        lineNumber: 244,
                                         columnNumber: 29
                                     }, this)
                                 ]
                             }, void 0, true, {
                                 fileName: "[project]/Desktop/yapinsaat/src/components/AboutPageContent.tsx",
-                                lineNumber: 201,
+                                lineNumber: 235,
                                 columnNumber: 25
                             }, this),
                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$Desktop$2f$yapinsaat$2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -1263,28 +1291,28 @@ function AboutPageContent() {
                                     className: "object-cover"
                                 }, void 0, false, {
                                     fileName: "[project]/Desktop/yapinsaat/src/components/AboutPageContent.tsx",
-                                    lineNumber: 216,
+                                    lineNumber: 250,
                                     columnNumber: 29
                                 }, this)
                             }, void 0, false, {
                                 fileName: "[project]/Desktop/yapinsaat/src/components/AboutPageContent.tsx",
-                                lineNumber: 215,
+                                lineNumber: 249,
                                 columnNumber: 25
                             }, this)
                         ]
                     }, void 0, true, {
                         fileName: "[project]/Desktop/yapinsaat/src/components/AboutPageContent.tsx",
-                        lineNumber: 197,
+                        lineNumber: 231,
                         columnNumber: 21
                     }, this)
                 }, void 0, false, {
                     fileName: "[project]/Desktop/yapinsaat/src/components/AboutPageContent.tsx",
-                    lineNumber: 196,
+                    lineNumber: 230,
                     columnNumber: 17
                 }, this)
             }, void 0, false, {
                 fileName: "[project]/Desktop/yapinsaat/src/components/AboutPageContent.tsx",
-                lineNumber: 195,
+                lineNumber: 229,
                 columnNumber: 13
             }, this),
             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$Desktop$2f$yapinsaat$2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("section", {
@@ -1300,7 +1328,7 @@ function AboutPageContent() {
                                     children: "Misyon, Vizyon ve Değerlerimiz"
                                 }, void 0, false, {
                                     fileName: "[project]/Desktop/yapinsaat/src/components/AboutPageContent.tsx",
-                                    lineNumber: 231,
+                                    lineNumber: 265,
                                     columnNumber: 25
                                 }, this),
                                 /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$Desktop$2f$yapinsaat$2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("p", {
@@ -1308,13 +1336,13 @@ function AboutPageContent() {
                                     children: "İşimizi yürütürken bize rehberlik eden ilkeler."
                                 }, void 0, false, {
                                     fileName: "[project]/Desktop/yapinsaat/src/components/AboutPageContent.tsx",
-                                    lineNumber: 234,
+                                    lineNumber: 268,
                                     columnNumber: 25
                                 }, this)
                             ]
                         }, void 0, true, {
                             fileName: "[project]/Desktop/yapinsaat/src/components/AboutPageContent.tsx",
-                            lineNumber: 230,
+                            lineNumber: 264,
                             columnNumber: 21
                         }, this),
                         /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$Desktop$2f$yapinsaat$2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -1334,17 +1362,17 @@ function AboutPageContent() {
                                                     size: 32
                                                 }, void 0, false, {
                                                     fileName: "[project]/Desktop/yapinsaat/src/components/AboutPageContent.tsx",
-                                                    lineNumber: 251,
+                                                    lineNumber: 285,
                                                     columnNumber: 45
                                                 }, this)
                                             }, void 0, false, {
                                                 fileName: "[project]/Desktop/yapinsaat/src/components/AboutPageContent.tsx",
-                                                lineNumber: 250,
+                                                lineNumber: 284,
                                                 columnNumber: 41
                                             }, this)
                                         }, void 0, false, {
                                             fileName: "[project]/Desktop/yapinsaat/src/components/AboutPageContent.tsx",
-                                            lineNumber: 249,
+                                            lineNumber: 283,
                                             columnNumber: 37
                                         }, this),
                                         /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$Desktop$2f$yapinsaat$2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("h3", {
@@ -1352,7 +1380,7 @@ function AboutPageContent() {
                                             children: value.title
                                         }, void 0, false, {
                                             fileName: "[project]/Desktop/yapinsaat/src/components/AboutPageContent.tsx",
-                                            lineNumber: 254,
+                                            lineNumber: 288,
                                             columnNumber: 37
                                         }, this),
                                         /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$Desktop$2f$yapinsaat$2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("p", {
@@ -1360,30 +1388,30 @@ function AboutPageContent() {
                                             children: value.description
                                         }, void 0, false, {
                                             fileName: "[project]/Desktop/yapinsaat/src/components/AboutPageContent.tsx",
-                                            lineNumber: 255,
+                                            lineNumber: 289,
                                             columnNumber: 37
                                         }, this)
                                     ]
                                 }, index, true, {
                                     fileName: "[project]/Desktop/yapinsaat/src/components/AboutPageContent.tsx",
-                                    lineNumber: 245,
+                                    lineNumber: 279,
                                     columnNumber: 33
                                 }, this);
                             })
                         }, void 0, false, {
                             fileName: "[project]/Desktop/yapinsaat/src/components/AboutPageContent.tsx",
-                            lineNumber: 238,
+                            lineNumber: 272,
                             columnNumber: 21
                         }, this)
                     ]
                 }, void 0, true, {
                     fileName: "[project]/Desktop/yapinsaat/src/components/AboutPageContent.tsx",
-                    lineNumber: 229,
+                    lineNumber: 263,
                     columnNumber: 17
                 }, this)
             }, void 0, false, {
                 fileName: "[project]/Desktop/yapinsaat/src/components/AboutPageContent.tsx",
-                lineNumber: 228,
+                lineNumber: 262,
                 columnNumber: 13
             }, this),
             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$Desktop$2f$yapinsaat$2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("section", {
@@ -1399,7 +1427,7 @@ function AboutPageContent() {
                                     children: "Ekibimiz"
                                 }, void 0, false, {
                                     fileName: "[project]/Desktop/yapinsaat/src/components/AboutPageContent.tsx",
-                                    lineNumber: 267,
+                                    lineNumber: 301,
                                     columnNumber: 25
                                 }, this),
                                 /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$Desktop$2f$yapinsaat$2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("p", {
@@ -1407,13 +1435,13 @@ function AboutPageContent() {
                                     children: "Deneyimli ve uzman kadromuzla projelerinize değer katıyoruz."
                                 }, void 0, false, {
                                     fileName: "[project]/Desktop/yapinsaat/src/components/AboutPageContent.tsx",
-                                    lineNumber: 270,
+                                    lineNumber: 304,
                                     columnNumber: 25
                                 }, this)
                             ]
                         }, void 0, true, {
                             fileName: "[project]/Desktop/yapinsaat/src/components/AboutPageContent.tsx",
-                            lineNumber: 266,
+                            lineNumber: 300,
                             columnNumber: 21
                         }, this),
                         /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$Desktop$2f$yapinsaat$2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -1431,12 +1459,12 @@ function AboutPageContent() {
                                                 className: "object-cover"
                                             }, void 0, false, {
                                                 fileName: "[project]/Desktop/yapinsaat/src/components/AboutPageContent.tsx",
-                                                lineNumber: 284,
+                                                lineNumber: 318,
                                                 columnNumber: 37
                                             }, this)
                                         }, void 0, false, {
                                             fileName: "[project]/Desktop/yapinsaat/src/components/AboutPageContent.tsx",
-                                            lineNumber: 283,
+                                            lineNumber: 317,
                                             columnNumber: 33
                                         }, this),
                                         /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$Desktop$2f$yapinsaat$2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -1447,7 +1475,7 @@ function AboutPageContent() {
                                                     children: member.name
                                                 }, void 0, false, {
                                                     fileName: "[project]/Desktop/yapinsaat/src/components/AboutPageContent.tsx",
-                                                    lineNumber: 292,
+                                                    lineNumber: 326,
                                                     columnNumber: 37
                                                 }, this),
                                                 /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$Desktop$2f$yapinsaat$2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("p", {
@@ -1455,35 +1483,35 @@ function AboutPageContent() {
                                                     children: member.position
                                                 }, void 0, false, {
                                                     fileName: "[project]/Desktop/yapinsaat/src/components/AboutPageContent.tsx",
-                                                    lineNumber: 295,
+                                                    lineNumber: 329,
                                                     columnNumber: 37
                                                 }, this)
                                             ]
                                         }, void 0, true, {
                                             fileName: "[project]/Desktop/yapinsaat/src/components/AboutPageContent.tsx",
-                                            lineNumber: 291,
+                                            lineNumber: 325,
                                             columnNumber: 33
                                         }, this)
                                     ]
                                 }, index, true, {
                                     fileName: "[project]/Desktop/yapinsaat/src/components/AboutPageContent.tsx",
-                                    lineNumber: 279,
+                                    lineNumber: 313,
                                     columnNumber: 29
                                 }, this))
                         }, void 0, false, {
                             fileName: "[project]/Desktop/yapinsaat/src/components/AboutPageContent.tsx",
-                            lineNumber: 274,
+                            lineNumber: 308,
                             columnNumber: 21
                         }, this)
                     ]
                 }, void 0, true, {
                     fileName: "[project]/Desktop/yapinsaat/src/components/AboutPageContent.tsx",
-                    lineNumber: 265,
+                    lineNumber: 299,
                     columnNumber: 17
                 }, this)
             }, void 0, false, {
                 fileName: "[project]/Desktop/yapinsaat/src/components/AboutPageContent.tsx",
-                lineNumber: 264,
+                lineNumber: 298,
                 columnNumber: 13
             }, this),
             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$Desktop$2f$yapinsaat$2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("section", {
@@ -1497,7 +1525,7 @@ function AboutPageContent() {
                                 children: "Referanslarımız"
                             }, void 0, false, {
                                 fileName: "[project]/Desktop/yapinsaat/src/components/AboutPageContent.tsx",
-                                lineNumber: 306,
+                                lineNumber: 340,
                                 columnNumber: 21
                             }, this),
                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$Desktop$2f$yapinsaat$2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("p", {
@@ -1505,123 +1533,84 @@ function AboutPageContent() {
                                 children: "Birlikte çalışmaktan gurur duyduğumuz değerli müşterilerimiz ve ortaklarımız."
                             }, void 0, false, {
                                 fileName: "[project]/Desktop/yapinsaat/src/components/AboutPageContent.tsx",
-                                lineNumber: 309,
+                                lineNumber: 343,
                                 columnNumber: 21
                             }, this)
                         ]
                     }, void 0, true, {
                         fileName: "[project]/Desktop/yapinsaat/src/components/AboutPageContent.tsx",
-                        lineNumber: 305,
+                        lineNumber: 339,
                         columnNumber: 17
                     }, this),
                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$Desktop$2f$yapinsaat$2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
                         className: "relative overflow-hidden w-full",
+                        onTouchStart: onTouchStart,
+                        onTouchMove: onTouchMove,
+                        onTouchEnd: onTouchEnd,
                         children: /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$Desktop$2f$yapinsaat$2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
-                            className: "flex gap-8 animate-slide-infinite",
+                            className: `m-4 flex gap-8 ${isPaused ? 'animate-none' : 'animate-slide-infinite'}`,
                             children: [
-                                /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$Desktop$2f$yapinsaat$2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
-                                    className: "flex gap-8 shrink-0",
-                                    children: [
-                                        1,
-                                        2,
-                                        3,
-                                        4,
-                                        5,
-                                        6,
-                                        7,
-                                        8
-                                    ].map((num)=>/*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$Desktop$2f$yapinsaat$2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
-                                            className: "bg-white p-8 rounded-xl shadow-md hover:shadow-xl transition-shadow flex items-center justify-center h-32 w-64 shrink-0",
-                                            children: /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$Desktop$2f$yapinsaat$2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
-                                                className: "w-full h-12 bg-slate-200 rounded-lg flex items-center justify-center",
-                                                children: /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$Desktop$2f$yapinsaat$2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("span", {
-                                                    className: "text-slate-500 font-semibold",
-                                                    children: [
-                                                        "Logo ",
-                                                        num
-                                                    ]
-                                                }, void 0, true, {
-                                                    fileName: "[project]/Desktop/yapinsaat/src/components/AboutPageContent.tsx",
-                                                    lineNumber: 322,
-                                                    columnNumber: 41
-                                                }, this)
-                                            }, void 0, false, {
-                                                fileName: "[project]/Desktop/yapinsaat/src/components/AboutPageContent.tsx",
-                                                lineNumber: 321,
-                                                columnNumber: 37
-                                            }, this)
-                                        }, num, false, {
+                                1,
+                                2,
+                                3,
+                                4,
+                                5,
+                                6,
+                                7,
+                                8,
+                                1,
+                                2,
+                                3,
+                                4,
+                                5,
+                                6,
+                                7,
+                                8
+                            ].map((num, index)=>/*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$Desktop$2f$yapinsaat$2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
+                                    className: "bg-white p-12 rounded-xl shadow-md hover:shadow-xl transition-shadow flex items-center justify-center h-40 w-64 shrink-0",
+                                    children: /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$Desktop$2f$yapinsaat$2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
+                                        className: "w-full h-16 bg-slate-200 rounded-lg flex items-center justify-center",
+                                        children: /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$Desktop$2f$yapinsaat$2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("span", {
+                                            className: "text-slate-500 font-semibold",
+                                            children: [
+                                                "Logo ",
+                                                num
+                                            ]
+                                        }, void 0, true, {
                                             fileName: "[project]/Desktop/yapinsaat/src/components/AboutPageContent.tsx",
-                                            lineNumber: 320,
-                                            columnNumber: 33
-                                        }, this))
-                                }, void 0, false, {
+                                            lineNumber: 360,
+                                            columnNumber: 37
+                                        }, this)
+                                    }, void 0, false, {
+                                        fileName: "[project]/Desktop/yapinsaat/src/components/AboutPageContent.tsx",
+                                        lineNumber: 359,
+                                        columnNumber: 33
+                                    }, this)
+                                }, index, false, {
                                     fileName: "[project]/Desktop/yapinsaat/src/components/AboutPageContent.tsx",
-                                    lineNumber: 318,
-                                    columnNumber: 25
-                                }, this),
-                                /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$Desktop$2f$yapinsaat$2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
-                                    className: "flex gap-8 shrink-0",
-                                    children: [
-                                        1,
-                                        2,
-                                        3,
-                                        4,
-                                        5,
-                                        6,
-                                        7,
-                                        8
-                                    ].map((num)=>/*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$Desktop$2f$yapinsaat$2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
-                                            className: "bg-white p-8 rounded-xl shadow-md hover:shadow-xl transition-shadow flex items-center justify-center h-32 w-64 shrink-0",
-                                            children: /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$Desktop$2f$yapinsaat$2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
-                                                className: "w-full h-12 bg-slate-200 rounded-lg flex items-center justify-center",
-                                                children: /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$Desktop$2f$yapinsaat$2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("span", {
-                                                    className: "text-slate-500 font-semibold",
-                                                    children: [
-                                                        "Logo ",
-                                                        num
-                                                    ]
-                                                }, void 0, true, {
-                                                    fileName: "[project]/Desktop/yapinsaat/src/components/AboutPageContent.tsx",
-                                                    lineNumber: 332,
-                                                    columnNumber: 41
-                                                }, this)
-                                            }, void 0, false, {
-                                                fileName: "[project]/Desktop/yapinsaat/src/components/AboutPageContent.tsx",
-                                                lineNumber: 331,
-                                                columnNumber: 37
-                                            }, this)
-                                        }, num + 8, false, {
-                                            fileName: "[project]/Desktop/yapinsaat/src/components/AboutPageContent.tsx",
-                                            lineNumber: 330,
-                                            columnNumber: 33
-                                        }, this))
-                                }, void 0, false, {
-                                    fileName: "[project]/Desktop/yapinsaat/src/components/AboutPageContent.tsx",
-                                    lineNumber: 328,
-                                    columnNumber: 25
-                                }, this)
-                            ]
-                        }, void 0, true, {
+                                    lineNumber: 358,
+                                    columnNumber: 29
+                                }, this))
+                        }, void 0, false, {
                             fileName: "[project]/Desktop/yapinsaat/src/components/AboutPageContent.tsx",
-                            lineNumber: 316,
+                            lineNumber: 355,
                             columnNumber: 21
                         }, this)
                     }, void 0, false, {
                         fileName: "[project]/Desktop/yapinsaat/src/components/AboutPageContent.tsx",
-                        lineNumber: 315,
+                        lineNumber: 349,
                         columnNumber: 17
                     }, this)
                 ]
             }, void 0, true, {
                 fileName: "[project]/Desktop/yapinsaat/src/components/AboutPageContent.tsx",
-                lineNumber: 304,
+                lineNumber: 338,
                 columnNumber: 13
             }, this)
         ]
     }, void 0, true);
 }
-_s1(AboutPageContent, "tNsTpd16w0Xtz5bQCkAUPT+nroA=", false, function() {
+_s1(AboutPageContent, "aHxb4CORXplCN+vDbYMzJyPcDHk=", false, function() {
     return [
         __TURBOPACK__imported__module__$5b$project$5d2f$Desktop$2f$yapinsaat$2f$src$2f$hooks$2f$useScrollAnimation$2e$ts__$5b$app$2d$client$5d$__$28$ecmascript$29$__["useScrollAnimation"],
         __TURBOPACK__imported__module__$5b$project$5d2f$Desktop$2f$yapinsaat$2f$src$2f$hooks$2f$useScrollAnimation$2e$ts__$5b$app$2d$client$5d$__$28$ecmascript$29$__["useScrollAnimation"],
