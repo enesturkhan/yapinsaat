@@ -1257,10 +1257,6 @@
     object-fit: cover;
   }
 
-  .p-1 {
-    padding: calc(var(--spacing) * 1);
-  }
-
   .p-2 {
     padding: calc(var(--spacing) * 2);
   }
@@ -2454,7 +2450,7 @@ section {
 }
 
 .animate-slide-infinite {
-  animation: 40s linear infinite slideInfinite;
+  animation: 20s linear infinite slideInfinite;
 }
 
 @property --tw-translate-x {

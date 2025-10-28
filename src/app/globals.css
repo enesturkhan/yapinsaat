@@ -546,5 +546,5 @@ section {
 }
 
 .animate-slide-infinite {
-  animation: slideInfinite 40s linear infinite;
+  animation: slideInfinite 20s linear infinite;
 }
