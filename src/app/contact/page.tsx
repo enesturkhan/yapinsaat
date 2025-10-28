@@ -1,15 +1,12 @@
+"use client";
+
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
 import FloatingButtons from "@/components/FloatingButtons";
 import Image from "next/image";
 import ContactForm from "@/components/ContactForm";
-import { Phone, Mail, MapPin, Clock } from "lucide-react";
-import type { Metadata } from "next";
-
-export const metadata: Metadata = {
-    title: "İletişim - Hanyapı",
-    description: "Bizimle iletişime geçin. Projeleriniz için profesyonel destek ve danışmanlık.",
-};
+import { Phone, Mail, MapPin, Clock, ChevronDown } from "lucide-react";
+import { useState } from "react";
 
 const contactInfo = [
     {
@@ -37,6 +34,64 @@ const contactInfo = [
         subInfo: "Cumartesi: 09:00 - 14:00",
     },
 ];
+
+// Accordion Component
+function Accordion() {
+    const [openIndex, setOpenIndex] = useState<number | null>(0);
+
+    const faqs = [
+        {
+            question: "Proje süreçleri ne kadar sürer?",
+            answer: "Proje süreleri, projenin büyüklüğüne ve karmaşıklığına göre değişmektedir. Detaylı bilgi için bizimle iletişime geçebilirsiniz."
+        },
+        {
+            question: "Teklif almak için ne yapmam gerekir?",
+            answer: "İletişim formumuzu doldurarak veya telefon ile bize ulaşarak ücretsiz teklif alabilirsiniz."
+        },
+        {
+            question: "Hangi bölgelerde hizmet veriyorsunuz?",
+            answer: "Türkiye genelinde hizmet vermekteyiz. Özellikle İstanbul, Ankara ve İzmir bölgelerinde aktif projelerimiz bulunmaktadır."
+        },
+        {
+            question: "Garanti süreleriniz nedir?",
+            answer: "Tüm projelerimiz için 2 yıl yapı garantisi sunmaktayız. Detaylı bilgi için sözleşme şartlarımızı inceleyebilirsiniz."
+        }
+    ];
+
+    const toggleItem = (index: number) => {
+        setOpenIndex(openIndex === index ? null : index);
+    };
+
+    return (
+        <div className="space-y-4">
+            {faqs.map((faq, index) => (
+                <div key={index} className="bg-white rounded-xl shadow-md overflow-hidden">
+                    <button
+                        onClick={() => toggleItem(index)}
+                        className="w-full p-6 flex items-center justify-between text-left hover:bg-slate-50 transition-colors"
+                    >
+                        <h3 className="text-lg font-semibold text-slate-900 pr-8">
+                            {faq.question}
+                        </h3>
+                        <ChevronDown
+                            className={`text-slate-600 flex-shrink-0 transition-transform duration-300 ${openIndex === index ? 'transform rotate-180' : ''
+                                }`}
+                            size={24}
+                        />
+                    </button>
+                    <div
+                        className={`transition-all duration-300 ease-in-out ${openIndex === index ? 'max-h-96 opacity-100' : 'max-h-0 opacity-0'
+                            } overflow-hidden`}
+                    >
+                        <div className="px-6 pb-6">
+                            <p className="text-slate-600">{faq.answer}</p>
+                        </div>
+                    </div>
+                </div>
+            ))}
+        </div>
+    );
+}
 
 export default function ContactPage() {
     return (
@@ -168,44 +223,7 @@ export default function ContactPage() {
                             </p>
                         </div>
 
-                        <div className="space-y-6">
-                            <div className="bg-white p-6 rounded-xl shadow-md">
-                                <h3 className="text-lg font-semibold text-slate-900 mb-2">
-                                    Proje süreçleri ne kadar sürer?
-                                </h3>
-                                <p className="text-slate-600">
-                                    Proje süreleri, projenin büyüklüğüne ve karmaşıklığına göre değişmektedir.
-                                    Detaylı bilgi için bizimle iletişime geçebilirsiniz.
-                                </p>
-                            </div>
-
-                            <div className="bg-white p-6 rounded-xl shadow-md">
-                                <h3 className="text-lg font-semibold text-slate-900 mb-2">
-                                    Teklif almak için ne yapmam gerekir?
-                                </h3>
-                                <p className="text-slate-600">
-                                    İletişim formumuzu doldurarak veya telefon ile bize ulaşarak ücretsiz teklif alabilirsiniz.
-                                </p>
-                            </div>
-
-                            <div className="bg-white p-6 rounded-xl shadow-md">
-                                <h3 className="text-lg font-semibold text-slate-900 mb-2">
-                                    Hangi bölgelerde hizmet veriyorsunuz?
-                                </h3>
-                                <p className="text-slate-600">
-                                    Türkiye genelinde hizmet vermekteyiz. Özellikle İstanbul, Ankara ve İzmir bölgelerinde aktif projelerimiz bulunmaktadır.
-                                </p>
-                            </div>
-
-                            <div className="bg-white p-6 rounded-xl shadow-md">
-                                <h3 className="text-lg font-semibold text-slate-900 mb-2">
-                                    Garanti süreleriniz nedir?
-                                </h3>
-                                <p className="text-slate-600">
-                                    Tüm projelerimiz için 2 yıl yapı garantisi sunmaktayız. Detaylı bilgi için sözleşme şartlarımızı inceleyebilirsiniz.
-                                </p>
-                            </div>
-                        </div>
+                        <Accordion />
                     </div>
                 </section>
             </main>

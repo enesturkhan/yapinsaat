@@ -386,3 +386,150 @@ section {
 .animate-slide-diagonal {
   animation: slideDiagonal 20s linear infinite;
 }
+
+/* Vinç Animasyonları */
+@keyframes craneArm {
+  0% {
+    transform: translateY(-100px);
+    opacity: 0;
+  }
+
+  20% {
+    opacity: 1;
+  }
+
+  80% {
+    transform: translateY(0);
+  }
+
+  100% {
+    transform: translateY(0);
+  }
+}
+
+@keyframes craneHook {
+  0% {
+    transform: translateY(-20px) rotate(0deg);
+  }
+
+  20% {
+    transform: translateY(0) rotate(0deg);
+  }
+
+  40% {
+    transform: translateY(0) rotate(5deg);
+  }
+
+  60% {
+    transform: translateY(0) rotate(-5deg);
+  }
+
+  80% {
+    transform: translateY(0) rotate(0deg);
+  }
+
+  100% {
+    transform: translateY(0) rotate(0deg);
+  }
+}
+
+.animate-crane-arm {
+  animation: craneArm 3s ease-out infinite;
+}
+
+.animate-crane-hook {
+  animation: craneHook 3s ease-out infinite;
+}
+
+/* Vinç Animasyonları - Alttan Yukarıya */
+@keyframes craneArmUp {
+  0% {
+    transform: translateY(100px);
+    opacity: 0;
+  }
+
+  20% {
+    opacity: 1;
+  }
+
+  80% {
+    transform: translateY(0);
+  }
+
+  100% {
+    transform: translateY(0);
+  }
+}
+
+@keyframes craneHookUp {
+  0% {
+    transform: translateY(20px) rotate(0deg);
+  }
+
+  20% {
+    transform: translateY(0) rotate(0deg);
+  }
+
+  40% {
+    transform: translateY(0) rotate(5deg);
+  }
+
+  60% {
+    transform: translateY(0) rotate(-5deg);
+  }
+
+  80% {
+    transform: translateY(0) rotate(0deg);
+  }
+
+  100% {
+    transform: translateY(0) rotate(0deg);
+  }
+}
+
+@keyframes doorOpen {
+  0% {
+    transform: translateY(100%);
+  }
+
+  30% {
+    transform: translateY(0);
+  }
+
+  70% {
+    transform: translateY(0);
+  }
+
+  100% {
+    transform: translateY(-100%);
+  }
+}
+
+.animate-crane-arm-up {
+  animation: craneArmUp 3s ease-out infinite;
+}
+
+.animate-crane-hook-up {
+  animation: craneHookUp 3s ease-out infinite;
+}
+
+.animate-door-open {
+  animation: doorOpen 3s ease-out infinite;
+}
+
+/* Loading Exit Animasyonu - Tek Kanatlı Kapı */
+@keyframes loadingExit {
+  0% {
+    transform: translateY(0);
+  }
+
+  100% {
+    transform: translateY(-100%);
+  }
+}
+
+.animate-loading-exit {
+  animation: loadingExit 0.8s ease-in-out forwards;
+  animation-delay: 2.2s;
+  /* Loading süresi bittikten sonra başlar */
+}
