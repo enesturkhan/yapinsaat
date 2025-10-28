@@ -18,9 +18,9 @@ export default function Navbar() {
     const [lastScrollY, setLastScrollY] = useState(0);
 
     const menuItems = [
+        { name: t("Hakkımızda", "About"), href: "/about" },
         { name: t("Hizmetler", "Services"), href: "/services" },
         { name: t("Projeler", "Projects"), href: "/projects" },
-        { name: t("Hakkımızda", "About"), href: "/about" },
         { name: t("İletişim", "Contact"), href: "/contact" },
     ];
 
