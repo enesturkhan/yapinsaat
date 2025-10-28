@@ -1435,6 +1435,10 @@
     white-space: nowrap;
   }
 
+  .\!text-slate-800 {
+    color: var(--slate-800) !important;
+  }
+
   .text-black {
     color: var(--color-black);
   }
@@ -1929,6 +1933,12 @@
     .md\:text-xl {
       font-size: var(--text-xl);
       line-height: var(--tw-leading, var(--text-xl--line-height));
+    }
+  }
+
+  @media (min-width: 48rem) {
+    .md\:text-black {
+      color: var(--color-black);
     }
   }
 
