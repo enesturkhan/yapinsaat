@@ -9,6 +9,8 @@ import { useLanguage } from "@/contexts/LanguageContext";
 export default function Projects({ showAll = false }: { showAll?: boolean }) {
     const { t } = useLanguage();
     const [currentIndex, setCurrentIndex] = useState(0);
+    const [touchStart, setTouchStart] = useState<number | null>(null);
+    const [touchEnd, setTouchEnd] = useState<number | null>(null);
 
     const projects = [
         {
@@ -62,6 +64,60 @@ export default function Projects({ showAll = false }: { showAll?: boolean }) {
         setCurrentIndex(index);
     };
 
+    // Touch handlers for mobile swipe
+    const minSwipeDistance = 50;
+
+    const onTouchStart = (e: React.TouchEvent) => {
+        setTouchEnd(null);
+        setTouchStart(e.targetTouches[0].clientX);
+    };
+
+    const onTouchMove = (e: React.TouchEvent) => {
+        setTouchEnd(e.targetTouches[0].clientX);
+    };
+
+    const onTouchEnd = () => {
+        if (!touchStart || !touchEnd) return;
+        const distance = touchStart - touchEnd;
+        const isLeftSwipe = distance > minSwipeDistance;
+        const isRightSwipe = distance < -minSwipeDistance;
+
+        if (isLeftSwipe) {
+            goToNext();
+        }
+        if (isRightSwipe) {
+            goToPrevious();
+        }
+    };
+
+    // Mouse drag handlers for desktop
+    const [isDragging, setIsDragging] = useState(false);
+    const [dragStart, setDragStart] = useState(0);
+
+    const onMouseDown = (e: React.MouseEvent) => {
+        setIsDragging(true);
+        setDragStart(e.clientX);
+    };
+
+    const onMouseMove = (e: React.MouseEvent) => {
+        if (!isDragging) return;
+        // Dragging logic could be added here if needed
+    };
+
+    const onMouseUp = (e: React.MouseEvent) => {
+        if (!isDragging) return;
+        const distance = dragStart - e.clientX;
+        setIsDragging(false);
+
+        if (Math.abs(distance) > minSwipeDistance) {
+            if (distance > 0) {
+                goToNext();
+            } else {
+                goToPrevious();
+            }
+        }
+    };
+
     // Ana sayfa için carousel görünümü
     if (!showAll) {
         return (
@@ -80,7 +136,16 @@ export default function Projects({ showAll = false }: { showAll?: boolean }) {
                 </div>
 
                 {/* Tam Ekran Carousel */}
-                <div className="relative h-[550px] w-full">
+                <div
+                    className="relative h-[550px] w-full cursor-grab active:cursor-grabbing"
+                    onTouchStart={onTouchStart}
+                    onTouchMove={onTouchMove}
+                    onTouchEnd={onTouchEnd}
+                    onMouseDown={onMouseDown}
+                    onMouseMove={onMouseMove}
+                    onMouseUp={onMouseUp}
+                    onMouseLeave={() => setIsDragging(false)}
+                >
                     {/* Slider Container */}
                     <div className="relative h-full">
                         {projects.map((project, index) => (
@@ -142,22 +207,6 @@ export default function Projects({ showAll = false }: { showAll?: boolean }) {
                         ))}
                     </div>
 
-                    {/* Navigation Arrows */}
-                    <button
-                        onClick={goToPrevious}
-                        className="absolute left-4 top-1/2 -translate-y-1/2 z-20 bg-white/10 hover:bg-white/20 backdrop-blur-sm text-white p-4 rounded-full transition-all duration-300 hover:scale-110 cursor-pointer"
-                        aria-label={t("Önceki proje", "Previous project")}
-                    >
-                        <ChevronLeft size={28} />
-                    </button>
-
-                    <button
-                        onClick={goToNext}
-                        className="absolute right-4 top-1/2 -translate-y-1/2 z-20 bg-white/10 hover:bg-white/20 backdrop-blur-sm text-white p-4 rounded-full transition-all duration-300 hover:scale-110 cursor-pointer"
-                        aria-label={t("Sonraki proje", "Next project")}
-                    >
-                        <ChevronRight size={28} />
-                    </button>
 
                     {/* Dot Indicators */}
                     <div className="absolute bottom-4 left-1/2 -translate-x-1/2 z-20 flex gap-3">

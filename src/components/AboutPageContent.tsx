@@ -299,6 +299,44 @@ export default function AboutPageContent() {
                     </div>
                 </div>
             </section>
+
+            {/* References/Partners Section */}
+            <section className="py-20 bg-slate-50">
+                <div className="text-center mb-12 px-4 sm:px-6 lg:px-8">
+                    <h2 className="text-3xl sm:text-4xl font-bold text-slate-900 mb-4">
+                        Referanslarımız
+                    </h2>
+                    <p className="text-slate-600 text-lg max-w-2xl mx-auto">
+                        Birlikte çalışmaktan gurur duyduğumuz değerli müşterilerimiz ve ortaklarımız.
+                    </p>
+                </div>
+
+                {/* Client Logos Slider - Full Width */}
+                <div className="relative overflow-hidden w-full">
+                    <div className="flex gap-8 animate-slide-infinite">
+                        {/* First Set */}
+                        <div className="flex gap-8 shrink-0">
+                            {[1, 2, 3, 4, 5, 6, 7, 8].map((num) => (
+                                <div key={num} className="bg-white p-8 rounded-xl shadow-md hover:shadow-xl transition-shadow flex items-center justify-center h-32 w-64 shrink-0">
+                                    <div className="w-full h-12 bg-slate-200 rounded-lg flex items-center justify-center">
+                                        <span className="text-slate-500 font-semibold">Logo {num}</span>
+                                    </div>
+                                </div>
+                            ))}
+                        </div>
+                        {/* Duplicate Set for Infinite Scroll */}
+                        <div className="flex gap-8 shrink-0">
+                            {[1, 2, 3, 4, 5, 6, 7, 8].map((num) => (
+                                <div key={num + 8} className="bg-white p-8 rounded-xl shadow-md hover:shadow-xl transition-shadow flex items-center justify-center h-32 w-64 shrink-0">
+                                    <div className="w-full h-12 bg-slate-200 rounded-lg flex items-center justify-center">
+                                        <span className="text-slate-500 font-semibold">Logo {num}</span>
+                                    </div>
+                                </div>
+                            ))}
+                        </div>
+                    </div>
+                </div>
+            </section>
         </>
     );
 }
